@@ -1,0 +1,22 @@
+{
+  "name": "aws-iac-setup",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "username": "vscode"
+    },
+    "ghcr.io/devcontainers/features/terraform:1": {}
+  },
+  "onCreateCommand": "sudo chown -R vscode:vscode /workspaces/${localWorkspaceFolderBasename}",
+  "postCreateCommand": "/bin/bash .devcontainer/postCreateCommand.sh",
+  "mounts": [],
+  "customizations": {
+    "vscode": {
+      "recommendations": [
+        "hashicorp.terraform",
+        "aquasecurityofficial.trivy-vulnerability-scanner"
+      ]
+    }
+  }
+}
