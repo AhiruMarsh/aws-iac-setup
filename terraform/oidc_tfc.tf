@@ -17,9 +17,15 @@ import {
   }
 }
 
+data "tls_certificate" "tfc" {
+  url = "https://${local.oidc_tfc_url}"
+}
+
 resource "aws_iam_openid_connect_provider" "tfc" {
-  url            = "https://${local.oidc_tfc_url}"
-  client_id_list = [local.oidc_tfc_client_id]
+  url = "https://${local.oidc_tfc_url}"
+
+  thumbprint_list = [data.tls_certificate.actions.certificates.0.sha1_fingerprint]
+  client_id_list  = [local.oidc_tfc_client_id]
 }
 
 data "aws_iam_policy_document" "tfc_assume_role" {
