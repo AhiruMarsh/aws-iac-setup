@@ -10,8 +10,8 @@ data "tls_certificate" "actions" {
 resource "aws_iam_openid_connect_provider" "actions" {
   url = "https://${local.oidc_gha_url}"
 
-  thumbprint_list = [data.tls_certificate.actions.certificates.0.sha1_fingerprint]
   client_id_list  = [local.oidc_gha_client_id]
+  thumbprint_list = [data.tls_certificate.actions.certificates.0.sha1_fingerprint]
 }
 
 data "aws_iam_policy_document" "actions_assume_role" {
