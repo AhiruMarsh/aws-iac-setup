@@ -3,11 +3,15 @@ locals {
   oidc_gha_client_id = "sts.amazonaws.com"
 }
 
+data "tls_certificate" "actions" {
+  url = "https://${local.oidc_gha_url}"
+}
+
 resource "aws_iam_openid_connect_provider" "actions" {
   url = "https://${local.oidc_gha_url}"
 
   client_id_list  = [local.oidc_gha_client_id]
-  thumbprint_list = ["ffffffffffffffffffffffffffffffffffffffff"]
+  thumbprint_list = [data.tls_certificate.actions.certificates.0.sha1_fingerprint]
 }
 
 data "aws_iam_policy_document" "actions_assume_role" {
