@@ -18,10 +18,8 @@ import {
 }
 
 resource "aws_iam_openid_connect_provider" "tfc" {
-  url = "https://${local.oidc_tfc_url}"
-
-  client_id_list  = [local.oidc_tfc_client_id]
-  thumbprint_list = ["ffffffffffffffffffffffffffffffffffffffff"]
+  url            = "https://${local.oidc_tfc_url}"
+  client_id_list = [local.oidc_tfc_client_id]
 }
 
 data "aws_iam_policy_document" "tfc_assume_role" {

@@ -30,7 +30,6 @@ HCP Terraform Workspace
 aws iam create-open-id-connect-provider \
     --url https://app.terraform.io \
     --client-id-list aws.workload.identity \
-    --thumbprint-list ffffffffffffffffffffffffffffffffffffffff
 ```
 
 #### 1-2. OIDC連携用IAMロールを作成

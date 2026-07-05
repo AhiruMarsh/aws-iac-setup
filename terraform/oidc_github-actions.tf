@@ -4,10 +4,8 @@ locals {
 }
 
 resource "aws_iam_openid_connect_provider" "actions" {
-  url = "https://${local.oidc_gha_url}"
-
-  client_id_list  = [local.oidc_gha_client_id]
-  thumbprint_list = ["ffffffffffffffffffffffffffffffffffffffff"]
+  url            = "https://${local.oidc_gha_url}"
+  client_id_list = [local.oidc_gha_client_id]
 }
 
 data "aws_iam_policy_document" "actions_assume_role" {
